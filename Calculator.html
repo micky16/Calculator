@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            background-color: cornsilk
+        }
+        
+        .btn-round {
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 40px;
+        }
+        
+        .btn-gray {
+            background-color: rgb(163, 161, 161);
+        }
+        
+        .btn-zero {
+            width: 210px;
+            height: 70px;
+            border-radius: 50px;
+            font-size: 40px
+        }
+        
+        .card {
+            width: 500px;
+            height: 500px;
+            margin-top: 50px !important;
+            border-radius: 10px;
+            box-shadow: 20px 20px 20px rgb(88, 103, 119);
+        }
+        
+        input {
+            height: 70px !important;
+            font-size: 50px !important;
+        }
+        
+        .jumbotron {
+            background-color: rgb(88, 103, 119);
+            padding: 30px;
+            font-size: 70px;
+            color: white;
+        }
+        
+        footer {
+            position: relative;
+            height: 120px;
+            margin-top: 130px;
+            padding: 10px;
+        }
+    </style>
+    <title>Calculator</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="jumbotron text-center ">Calculator</h1>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="card bg-secondary p-2 m-auto">
+                <div><input type="text" id="input" class="form-control" value="">
+                </div>
+                <div class="container-fluid ">
+
+                    <div class="row mt-2">
+                        <div class="col"><button class="btn-gray btn-round" id="b">⌫</button></div>
+                        <div class="col"><button class="btn-gray btn-round" id="c">C</button></div>
+                        <div class="col"><button class="btn btn-gray btn-round" id="%">%</button></div>
+                        <div class="col"><button class="btn btn-warning btn-round" id="/">&#247;</button></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col"><button class="btn btn-info btn-round" id="7">7</button></div>
+                        <div class="col"><button class="btn btn-info btn-round" id="8">8</button></div>
+                        <div class="col"><button class="btn btn-info btn-round" id="9">9</button></div>
+                        <div class="col"><button class="btn btn-warning btn-round" id="*">&#xd7;</button></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col"><button class="btn btn-info btn-round" id="4">4</button></div>
+                        <div class="col"><button class="btn btn-info btn-round" id="5">5</button></div>
+                        <div class="col"><button class="btn btn-info btn-round" id="6">6</button></div>
+                        <div class="col"><button class="btn btn-warning btn-round" id="-">-</button></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col"><button class="btn btn-info btn-round" id="1">1</button></div>
+                        <div class="col"><button class="btn btn-info btn-round" id="2">2</button></div>
+                        <div class="col"><button class="btn btn-info btn-round" id="3">3</button></div>
+                        <div class="col"><button class="btn btn-warning btn-round" id="+">+</button></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col"><button class="btn btn-info btn-zero" id="0">0</button></div>
+                        <div class="col"><button class="btn btn-info btn-round" id=".">.</button></div>
+                        <div class="col"><button class="btn-warning btn-round" id="equal">=</button></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-center text-white">
+        <h3>Copyright &copy; 2021 M Kumar</h3>
+        <p>All Rights Reserved</p>
+        <small>Developed & Maintained by Mukul Kumar</small>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        let btn_ref = document.querySelectorAll(".btn");
+        let input_ref = document.querySelector("#input")
+        let result_ref = document.querySelector('#equal')
+        let clear_ref = document.querySelector("#c")
+        let backspace_ref = document.querySelector('#b')
+
+        let btn_click_function = (e) => {
+            console.log("id:", e.target.id)
+            input_ref.value = input_ref.value + e.target.id
+        }
+
+        btn_ref.forEach(btn => {
+            btn.addEventListener("click", btn_click_function)
+        })
+
+
+        result_ref.addEventListener('click', () => {
+            let result = eval(input_ref.value);
+            input_ref.value = result;
+        })
+        clear_ref.addEventListener('click', () => {
+            input_ref.value = ""
+        })
+        backspace_ref.addEventListener('click', () => {
+            input_ref.value = input_ref.value.substr(0, input_ref.value.length - 1)
+        })
+    </script>
+
+</body>
+
+</html>
